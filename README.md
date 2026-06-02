@@ -7,6 +7,7 @@ Vespa AI is a real-time transaction monitoring system designed to detect, track,
 *   **Real-Time AI Detection**: Ingests live transaction streams and flags potential mule accounts instantly.
 *   **Global Threat Map**: A 3D interactive globe visualization that maps the geographical origin and destination of suspicious transactions.
 *   **Layering / Money Trail Prediction**: Automatically predicts how illicit funds are being funneled (Offshore, Crypto, Shell Corporations) to break the paper trail.
+*   **Downloadable SAR PDFs**: One-click generation of formal Suspicious Activity Reports (SAR) for flagged mule accounts.
 *   **Live Analytics Dashboard**: Tracks total volume scanned, active threats, and total fraud prevented in real-time.
 *   **Instant Audio Alerts**: Sci-fi audio notifications alert compliance officers the moment a critical threat is detected.
 
