@@ -1,0 +1,25 @@
+# Ignore Next.js source and build files
+frontend/src/
+frontend/.next/
+frontend/node_modules/
+
+# Ignore Python backend source and data
+backend/*.py
+backend/*.csv
+backend/*.pkl
+backend/venv/
+backend/__pycache__/
+
+# Exception: Keep dependencies and configs
+!frontend/package.json
+!frontend/package-lock.json
+!frontend/next.config.mjs
+!frontend/tsconfig.json
+!backend/requirements.txt
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Root Data
+DataSet.csv
