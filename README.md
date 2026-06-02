@@ -49,4 +49,4 @@ npm run dev
 *The dashboard will be available at `http://localhost:3000`*
 
 ---
-*Developed for the Hackathon 2026. Note: For security and compliance reasons, source code files are restricted and not published directly to this public repository.*
+Note: For security and compliance reasons, source code files are restricted and not published directly to this public repository.*
