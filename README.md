@@ -1,6 +1,6 @@
-# Sentinel AI: Anti-Money Laundering & Mule Account Detection
+# Vespa AI: Anti-Money Laundering & Mule Account Detection
 
-Sentinel AI is a real-time transaction monitoring system designed to detect, track, and prevent money laundering via mule accounts. It leverages a trained AI model to analyze continuous streams of banking transactions and identifies suspicious behavior based on transaction velocity, geographical anomalies, and risk scoring.
+Vespa AI is a real-time transaction monitoring system designed to detect, track, and prevent money laundering via mule accounts. It leverages a trained AI model to analyze continuous streams of banking transactions and identifies suspicious behavior based on transaction velocity, geographical anomalies, and risk scoring.
 
 ## 🚀 Key Features
 
