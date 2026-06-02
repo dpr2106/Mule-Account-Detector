@@ -1,8 +1,10 @@
 # Ignore Next.js build files
+frontend/src/
 frontend/.next/
 frontend/node_modules/
 
 # Ignore Python backend source and data
+backend/*.py
 backend/*.csv
 backend/*.pkl
 backend/venv/
