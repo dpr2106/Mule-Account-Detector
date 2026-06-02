@@ -1,4 +1,4 @@
-# Ignore Next.js source and build files
+# Ignore Next.js build files
 frontend/src/
 frontend/.next/
 frontend/node_modules/
