@@ -1,3 +1,4 @@
+/* Cache buster: Force Tailwind to rescan files */
 @import "tailwindcss";
 
 @theme {
