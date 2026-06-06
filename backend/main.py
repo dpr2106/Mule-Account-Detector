@@ -85,6 +85,7 @@ def stream_transaction():
     Simulates the bank sending us a live transaction. 
     It picks a random row from the dataset and evaluates it using the model.
     """
+    global system_stats
     import random
     
     tx_id = f"TXN-{random.randint(100000, 999999)}"
@@ -94,7 +95,6 @@ def stream_transaction():
         # Fallback simulation
         score = random.uniform(0, 100)
         is_mule = score > 85
-        global system_stats
         system_stats["total_scanned"] += amount
         if is_mule:
             system_stats["fraud_prevented"] += amount
@@ -110,7 +110,6 @@ def stream_transaction():
         }
         
     try:
-        global system_stats
         
         # Pick a random row
         idx = random.randint(0, len(df_pool) - 1)
