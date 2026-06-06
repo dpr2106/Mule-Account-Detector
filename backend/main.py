@@ -94,6 +94,12 @@ def stream_transaction():
         # Fallback simulation
         score = random.uniform(0, 100)
         is_mule = score > 85
+        global system_stats
+        system_stats["total_scanned"] += amount
+        if is_mule:
+            system_stats["fraud_prevented"] += amount
+            system_stats["active_threats"] += 1
+
         return {
             "id": tx_id,
             "amount": amount,
@@ -301,5 +307,6 @@ def analyze_transaction(tx: TransactionInput):
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
+    # pyrefly: ignore [missing-import]
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
