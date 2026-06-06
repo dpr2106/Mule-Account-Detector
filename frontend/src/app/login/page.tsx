@@ -12,6 +12,13 @@ export default function LoginPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Add real password check
+    if (password !== "admin123") {
+      alert("Invalid password! Please try again.");
+      return;
+    }
+
     // Simulate authentication
     localStorage.setItem("vespa_auth", role);
     localStorage.setItem("vespa_email", email);

@@ -192,7 +192,7 @@ export default function Dashboard() {
     const fetchStats = async () => {
       try {
         const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
-        const response = await fetch(`${backendUrl}/api/stats`);
+        const response = await fetch(`${backendUrl}/api/stats?t=${Date.now()}`);
         if (response.ok) {
           const data = await response.json();
           setStats(data);
