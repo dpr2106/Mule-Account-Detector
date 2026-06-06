@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
 export default function ThreatGlobe() {
-  const globeEl = useRef<any>();
+  const globeEl = useRef<any>(null);
   const [arcsData, setArcsData] = useState([]);
   const [isMounted, setIsMounted] = useState(false);
 
