@@ -5,11 +5,15 @@ Vespa AI is a real-time transaction monitoring system designed to detect, track,
 ## 🚀 Key Features
 
 *   **Real-Time AI Detection**: Ingests live transaction streams and flags potential mule accounts instantly.
-*   **Global Threat Map**: A 3D interactive globe visualization that maps the geographical origin and destination of suspicious transactions.
+*   **Global Threat Map & Network Graph**: A 3D interactive globe and network visualizer mapping the geographical origin and destination of suspicious transactions.
+*   **Vespa Copilot (AI Investigator)**: An integrated LLM copilot that assists investigators with risk analysis and specific transaction deep-dives.
+*   **Investigator "Case Management" Dashboard**: A dedicated action center for investigators to review flagged high-risk cases, freeze accounts, dismiss alerts, or generate reports.
+*   **Explainable AI (XAI) Risk Breakdown**: Transparent AI that provides a detailed breakdown of why a transaction was flagged (e.g., Transaction Velocity, Account Age).
+*   **Advanced Analytics & Charts**: Comprehensive data visualization highlighting fraud trends, volumes, and targeted institutions over time.
+*   **Critical SMS & Email Alerts**: Automated alerting system that instantly dispatches simulated SMS and email notifications to fraud teams for critical threats (>95% risk score).
+*   **CSV Data Export**: One-click exporting of live transaction streams and flagged cases for external auditing and compliance reviews.
 *   **Layering / Money Trail Prediction**: Automatically predicts how illicit funds are being funneled (Offshore, Crypto, Shell Corporations) to break the paper trail.
 *   **Downloadable SAR PDFs**: One-click generation of formal Suspicious Activity Reports (SAR) for flagged mule accounts.
-*   **Live Analytics Dashboard**: Tracks total volume scanned, active threats, and total fraud prevented in real-time.
-*   **Instant Audio Alerts**: Sci-fi audio notifications alert compliance officers the moment a critical threat is detected.
 
 ## 💻 Tech Stack
 
