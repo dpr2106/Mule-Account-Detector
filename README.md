@@ -57,4 +57,3 @@ npm run dev
 *The dashboard will be available at `http://localhost:3000`*
 
 ---
-Note: For security and compliance reasons, source code files are restricted and not published directly to the public repository rather being tested and developed in the local system requirements.*
