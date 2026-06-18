@@ -14,20 +14,23 @@ Vespa AI is a real-time transaction monitoring system designed to detect, track,
 *   **CSV Data Export**: One-click exporting of live transaction streams and flagged cases for external auditing and compliance reviews.
 *   **Layering / Money Trail Prediction**: Automatically predicts how illicit funds are being funneled (Offshore, Crypto, Shell Corporations) to break the paper trail.
 *   **Downloadable SAR PDFs**: One-click generation of formal Suspicious Activity Reports (SAR) for flagged mule accounts.
+*   **Custom Data Uploads**: Directly upload CSV files to test and process real-time transaction data dynamically, completely bypassing standard simulations.
 
 ## 💻 Tech Stack
 
 **Frontend:**
 *   Next.js 14 (App Router)
-*   React & TypeScript
+*   React 18 & TypeScript
 *   Tailwind CSS (v4)
 *   React Globe.GL (for 3D WebGL visualizations)
+*   Recharts (for Data Visualizations)
 
 **Backend:**
 *   Python 3 & FastAPI
 *   Scikit-Learn (AI Model Training & Inference)
 *   Pandas (Data Processing)
 *   Uvicorn (ASGI Server)
+*   Python-Multipart (Data Parsing)
 
 ## 🛠️ Local Setup Instructions
 
@@ -39,7 +42,7 @@ cd backend
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-python main.py
+python -m uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 *The backend API will start on `http://localhost:8000`*
 
@@ -52,6 +55,3 @@ npm install
 npm run dev
 ```
 *The dashboard will be available at `http://localhost:3000`*
-
----
-Note: For security and compliance reasons, source code files are restricted and not published directly to this public repository.*
