@@ -44,15 +44,15 @@ export default function ThreatGlobe() {
   }, []);
 
   return (
-    <div className="w-full h-[400px] bg-slate-900 rounded-xl overflow-hidden border border-slate-700/50 relative flex items-center justify-center">
+    <div className="w-full h-[400px] bg-zinc-950 rounded-xl overflow-hidden border border-zinc-800/50 relative flex items-center justify-center">
       {/* Absolute overlay for styling */}
       <div className="absolute top-4 left-4 z-10 pointer-events-none">
-        <h3 className="text-slate-300 font-semibold text-sm uppercase tracking-wider">Global Threat Map</h3>
-        <p className="text-xs text-rose-500 font-medium mt-1">Showing Active Money Laundering Routes</p>
+        <h3 className="text-zinc-300 font-semibold text-sm uppercase tracking-wider">Global Threat Map</h3>
+        <p className="text-xs text-pink-500 font-medium mt-1">Showing Active Money Laundering Routes</p>
       </div>
       
       <div className="absolute bottom-4 right-4 z-10 pointer-events-none text-right">
-         <p className="text-xs text-slate-500">Only displaying flagged transactions (Risk &gt; 85%)</p>
+         <p className="text-xs text-zinc-500">Only displaying flagged transactions (Risk &gt; 85%)</p>
       </div>
 
       {isMounted && (

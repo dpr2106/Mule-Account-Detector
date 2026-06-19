@@ -38,11 +38,11 @@ export default function NetworkGraph() {
   }, [graphData]);
 
   return (
-    <div className="w-full h-[400px] bg-slate-900 rounded-xl overflow-hidden border border-slate-700/50 relative">
+    <div className="w-full h-[400px] bg-zinc-950 rounded-xl overflow-hidden border border-zinc-800/50 relative">
       {/* Absolute overlay for styling */}
       <div className="absolute top-4 left-4 z-10 pointer-events-none">
-        <h3 className="text-slate-300 font-semibold text-sm uppercase tracking-wider">Topology Analysis</h3>
-        <p className="text-xs text-slate-500">Node: Account | Edge: Transaction</p>
+        <h3 className="text-zinc-300 font-semibold text-sm uppercase tracking-wider">Topology Analysis</h3>
+        <p className="text-xs text-zinc-500">Node: Account | Edge: Transaction</p>
       </div>
 
       {typeof window !== "undefined" && (
@@ -52,8 +52,8 @@ export default function NetworkGraph() {
           width={800} // Approximate, you might want to use a ref to get parent width
           height={400}
           nodeAutoColorBy="group"
-          nodeColor={(node: any) => (node.group === 1 ? "#ef4444" : "#10b981")} // Red for mules, Green for normal
-          linkColor={(link: any) => "rgba(100, 116, 139, 0.3)"} // slate-500 with opacity
+          nodeColor={(node: any) => (node.group === 1 ? "#ec4899" : "#84cc16")} // Pink for mules, Lime for normal
+          linkColor={(link: any) => "rgba(100, 116, 139, 0.3)"} // zinc-500 with opacity
           nodeRelSize={4}
           linkDirectionalParticles={2}
           linkDirectionalParticleSpeed={(d: any) => d.value * 0.001}
@@ -78,7 +78,7 @@ export default function NetworkGraph() {
             // Draw circle
             ctx.beginPath();
             ctx.arc(node.x, node.y, node.val, 0, 2 * Math.PI, false);
-            ctx.fillStyle = isMule ? "#ef4444" : "#10b981";
+            ctx.fillStyle = isMule ? "#ec4899" : "#84cc16";
             ctx.fill();
             
             // Highlight Master Mules with a white ring
