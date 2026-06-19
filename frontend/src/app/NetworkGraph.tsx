@@ -38,11 +38,11 @@ export default function NetworkGraph() {
   }, [graphData]);
 
   return (
-    <div className="w-full h-[400px] bg-zinc-950 rounded-xl overflow-hidden border border-zinc-800/50 relative">
+    <div className="w-full h-[400px] bg-black rounded-xl overflow-hidden border border-zinc-800/50 relative">
       {/* Absolute overlay for styling */}
       <div className="absolute top-4 left-4 z-10 pointer-events-none">
-        <h3 className="text-zinc-300 font-semibold text-sm uppercase tracking-wider">Topology Analysis</h3>
-        <p className="text-xs text-zinc-500">Node: Account | Edge: Transaction</p>
+        <h3 className="text-zinc-200 font-semibold text-sm uppercase tracking-wider">Topology Analysis</h3>
+        <p className="text-xs text-zinc-400">Node: Account | Edge: Transaction</p>
       </div>
 
       {typeof window !== "undefined" && (

@@ -85,14 +85,14 @@ export default function CopilotChat({ selectedTx }: { selectedTx: any }) {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 w-96 h-[500px] bg-zinc-950 border border-zinc-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 duration-200">
+    <div className="fixed bottom-6 right-6 w-96 h-[500px] bg-black border border-zinc-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 duration-200">
       {/* Header */}
-      <div className="bg-zinc-900 border-b border-zinc-800 p-4 flex justify-between items-center">
+      <div className="bg-zinc-950 border-b border-zinc-800 p-4 flex justify-between items-center">
         <div className="flex items-center gap-3">
           <div className="w-2 h-2 rounded-full bg-lime-500 animate-pulse"></div>
           <h3 className="text-white font-semibold">Vespa Copilot</h3>
         </div>
-        <button onClick={() => setIsOpen(false)} className="text-zinc-400 hover:text-white">
+        <button onClick={() => setIsOpen(false)} className="text-zinc-200 hover:text-white">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -100,13 +100,13 @@ export default function CopilotChat({ selectedTx }: { selectedTx: any }) {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-950">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-black">
         {messages.map((m, idx) => (
           <div key={idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[80%] rounded-lg p-3 text-sm overflow-hidden ${
               m.role === 'user' 
                 ? 'bg-cyan-600 text-white rounded-br-none' 
-                : 'bg-zinc-900 text-zinc-300 border border-zinc-800 rounded-bl-none'
+                : 'bg-zinc-950 text-zinc-200 border border-zinc-800 rounded-bl-none'
             }`}>
               {m.role === 'user' ? m.content : (
                 <ReactMarkdown 
@@ -114,7 +114,7 @@ export default function CopilotChat({ selectedTx }: { selectedTx: any }) {
                     p: ({node, ...props}) => <p className="mb-2 last:mb-0 leading-relaxed" {...props} />,
                     ul: ({node, ...props}) => <ul className="list-disc pl-4 mb-2 space-y-1" {...props} />,
                     ol: ({node, ...props}) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
-                    li: ({node, ...props}) => <li className="text-zinc-300" {...props} />,
+                    li: ({node, ...props}) => <li className="text-zinc-200" {...props} />,
                     strong: ({node, ...props}) => <strong className="font-semibold text-white" {...props} />,
                   }}
                 >
@@ -127,7 +127,7 @@ export default function CopilotChat({ selectedTx }: { selectedTx: any }) {
         <div ref={messagesEndRef} />
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 rounded-bl-none flex gap-1 items-center">
+            <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-3 rounded-bl-none flex gap-1 items-center">
               <span className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce"></span>
               <span className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
               <span className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></span>
@@ -137,7 +137,7 @@ export default function CopilotChat({ selectedTx }: { selectedTx: any }) {
       </div>
 
       {/* Input */}
-      <div className="p-4 bg-zinc-900 border-t border-zinc-800">
+      <div className="p-4 bg-zinc-950 border-t border-zinc-800">
         <form onSubmit={handleSend} className="flex gap-2">
           <input 
             type="text" 
@@ -145,7 +145,7 @@ export default function CopilotChat({ selectedTx }: { selectedTx: any }) {
             onChange={(e) => setInput(e.target.value)}
             disabled={isLoading}
             placeholder="Ask about this transaction..." 
-            className="flex-1 bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
+            className="flex-1 bg-black border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50"
           />
           <button type="submit" disabled={isLoading} className="bg-cyan-600 hover:bg-cyan-700 disabled:bg-zinc-700 text-white rounded-lg p-2 transition-colors">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

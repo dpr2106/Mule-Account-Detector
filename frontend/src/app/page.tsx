@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import ThreatGlobe from "./ThreatGlobe";
 import CopilotChat from "./CopilotChat";
 import { jsPDF } from "jspdf";
@@ -257,21 +258,23 @@ export default function Dashboard() {
   if (!isAuthenticated) return null;
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-200 p-8 font-sans">
+    <div className="min-h-screen bg-black text-zinc-200 p-8 font-sans">
       <header className="mb-8 flex items-center justify-between border-b border-zinc-800 pb-6">
         <div>
           <h1 className="text-3xl font-bold text-white tracking-tight flex items-center gap-3">
-            <span className="w-4 h-4 rounded-full bg-amber-500 animate-pulse"></span>
+            <div className="relative w-8 h-8">
+              <Image src="/logo.png" alt="Vespa AI Logo" fill className="object-contain" />
+            </div>
             Vespa AI: Mule Account Detection
           </h1>
-          <p className="text-zinc-400 mt-2 text-sm">Real-time Transaction Monitoring System</p>
+          <p className="text-zinc-200 mt-2 text-sm">Real-time Transaction Monitoring System</p>
         </div>
         <div className="flex gap-4 items-center">
           <button
             onClick={toggleSound}
             className={`px-4 py-2 rounded-lg border shadow-inner flex items-center gap-2 transition-colors ${soundEnabled
               ? "bg-cyan-500/20 border-cyan-500/50 text-cyan-300"
-              : "bg-zinc-900 border-zinc-800 text-zinc-400"
+              : "bg-zinc-950 border-zinc-800 text-zinc-200"
               }`}
           >
             <span className="text-xs uppercase tracking-wider">Audio Alerts: {soundEnabled ? 'ON' : 'OFF'}</span>
@@ -286,8 +289,8 @@ export default function Dashboard() {
               </svg>
             )}
           </button>
-          <div className="px-4 py-2 bg-zinc-900 rounded-lg border border-zinc-800 shadow-inner">
-            <p className="text-xs text-zinc-400 uppercase tracking-wider">Role: {userRole === 'admin' ? 'L2' : 'L1'}</p>
+          <div className="px-4 py-2 bg-zinc-950 rounded-lg border border-zinc-800 shadow-inner">
+            <p className="text-xs text-zinc-200 uppercase tracking-wider">Role: {userRole === 'admin' ? 'L2' : 'L1'}</p>
             <p className="text-lime-400 font-semibold flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-lime-500"></span> Online
             </p>
@@ -306,30 +309,30 @@ export default function Dashboard() {
 
       {/* Analytics Dashboard Banner */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-zinc-900/80 rounded-xl p-4 border border-zinc-800 shadow-lg flex items-center justify-between">
+        <div className="bg-black/90 rounded-xl p-4 border-t-2 border-t-cyan-500 border-x border-b border-zinc-800 shadow-[inset_0_0_20px_rgba(6,182,212,0.1)] flex items-center justify-between">
           <div>
-            <p className="text-zinc-400 text-sm font-medium uppercase tracking-wider mb-1">Total Volume Scanned</p>
+            <p className="text-cyan-300 text-sm font-medium uppercase tracking-wider mb-1">Total Volume Scanned</p>
             <p className="text-2xl font-bold text-white tracking-tight">₹{stats.total_scanned.toLocaleString("en-IN")}</p>
           </div>
-          <div className="w-12 h-12 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.3)]">
             <span className="text-cyan-400 font-bold text-xl">₹</span>
           </div>
         </div>
-        <div className="bg-zinc-900/80 rounded-xl p-4 border border-zinc-800 shadow-lg flex items-center justify-between">
+        <div className="bg-black/90 rounded-xl p-4 border-t-2 border-t-lime-500 border-x border-b border-zinc-800 shadow-[inset_0_0_20px_rgba(132,204,22,0.1)] flex items-center justify-between">
           <div>
-            <p className="text-zinc-400 text-sm font-medium uppercase tracking-wider mb-1">Total Fraud Prevented</p>
-            <p className="text-2xl font-bold text-lime-400 tracking-tight">₹{stats.fraud_prevented.toLocaleString("en-IN")}</p>
+            <p className="text-lime-300 text-sm font-medium uppercase tracking-wider mb-1">Total Fraud Prevented</p>
+            <p className="text-2xl font-bold text-white tracking-tight">₹{stats.fraud_prevented.toLocaleString("en-IN")}</p>
           </div>
-          <div className="w-12 h-12 rounded-full bg-lime-500/20 border border-lime-500/30 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-lime-500/20 border border-lime-500/50 flex items-center justify-center shadow-[0_0_15px_rgba(132,204,22,0.3)]">
             <span className="text-lime-400 font-bold text-xl">✓</span>
           </div>
         </div>
-        <div className="bg-zinc-900/80 rounded-xl p-4 border border-zinc-800 shadow-lg flex items-center justify-between">
+        <div className="bg-black/90 rounded-xl p-4 border-t-2 border-t-pink-500 border-x border-b border-zinc-800 shadow-[inset_0_0_20px_rgba(236,72,153,0.1)] flex items-center justify-between">
           <div>
-            <p className="text-zinc-400 text-sm font-medium uppercase tracking-wider mb-1">Active Mule Threats</p>
-            <p className="text-2xl font-bold text-pink-400 tracking-tight">{stats.active_threats.toLocaleString("en-IN")}</p>
+            <p className="text-pink-300 text-sm font-medium uppercase tracking-wider mb-1">Active Mule Threats</p>
+            <p className="text-2xl font-bold text-white tracking-tight">{stats.active_threats.toLocaleString("en-IN")}</p>
           </div>
-          <div className="w-12 h-12 rounded-full bg-pink-500/20 border border-pink-500/30 flex items-center justify-center animate-pulse shadow-[0_0_15px_rgba(244,63,94,0.5)]">
+          <div className="w-12 h-12 rounded-full bg-pink-500/20 border border-pink-500/50 flex items-center justify-center animate-pulse shadow-[0_0_20px_rgba(244,63,94,0.6)]">
             <span className="text-pink-400 font-bold text-xl">!</span>
           </div>
         </div>
@@ -348,7 +351,7 @@ export default function Dashboard() {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 rounded-t-lg font-medium transition-colors ${activeTab === tab ? "bg-cyan-600 text-white" : "text-zinc-400 hover:text-zinc-200"}`}
+            className={`px-4 py-2 rounded-t-lg font-medium transition-colors ${activeTab === tab ? "bg-cyan-600 text-white" : "text-zinc-200 hover:text-zinc-200"}`}
           >
             {tab.replace(/([A-Z])/g, ' $1').trim()}
           </button>
@@ -358,7 +361,7 @@ export default function Dashboard() {
             <Upload className="w-4 h-4" /> Upload Custom CSV
             <input type="file" accept=".csv" className="hidden" onChange={uploadDataset} />
           </label>
-          <button onClick={exportToCSV} className="px-4 py-2 text-sm bg-zinc-900 hover:bg-zinc-800 text-white rounded flex items-center gap-2 border border-zinc-700 transition-colors">
+          <button onClick={exportToCSV} className="px-4 py-2 text-sm bg-zinc-950 hover:bg-zinc-800 text-white rounded flex items-center gap-2 border border-zinc-700 transition-colors">
             <Download className="w-4 h-4" /> Export CSV
           </button>
         </div>
@@ -368,15 +371,15 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column: Live Feed */}
           <div className="col-span-1 flex flex-col gap-4">
-            <h2 className="text-lg font-semibold text-zinc-300 uppercase tracking-wider flex justify-between">
+            <h2 className="text-lg font-semibold text-zinc-200 uppercase tracking-wider flex justify-between">
               Live Feed
-              <span className="text-xs bg-zinc-900 px-2 py-1 rounded text-zinc-400 border border-zinc-800">
+              <span className="text-xs bg-zinc-950 px-2 py-1 rounded text-zinc-200 border border-zinc-800">
                 Auto-updating
               </span>
             </h2>
-            <div className="flex-1 bg-zinc-900/50 rounded-xl border border-zinc-800/50 p-4 overflow-y-auto max-h-[70vh] shadow-xl backdrop-blur-sm">
+            <div className="flex-1 bg-black/80 rounded-xl border border-zinc-700 p-4 overflow-y-auto max-h-[70vh] shadow-[inset_0_0_30px_rgba(255,255,255,0.02)] backdrop-blur-sm">
               {transactions.length === 0 ? (
-                <p className="text-zinc-500 text-center mt-10">Fetching transactions...</p>
+                <p className="text-zinc-400 text-center mt-10">Fetching transactions...</p>
               ) : (
                 <div className="flex flex-col gap-3">
                   {transactions.map((tx) => (
@@ -385,12 +388,12 @@ export default function Dashboard() {
                       onClick={() => setSelectedTx(tx)}
                       className={`p-4 rounded-lg cursor-pointer transition-all duration-200 border ${tx.isMule
                         ? "bg-pink-500/10 border-pink-500/50 hover:bg-pink-500/20"
-                        : "bg-zinc-900 border-zinc-800 hover:bg-zinc-800"
+                        : "bg-zinc-950 border-zinc-800 hover:bg-zinc-800"
                         } ${selectedTx?.id === tx.id ? "ring-2 ring-cyan-500" : ""}`}
                     >
                       <div className="flex justify-between items-start mb-2">
-                        <span className="font-mono text-sm text-zinc-300">{tx.id}</span>
-                        <span className="text-xs text-zinc-500">{tx.timestamp}</span>
+                        <span className="font-mono text-sm text-zinc-200">{tx.id}</span>
+                        <span className="text-xs text-zinc-400">{tx.timestamp}</span>
                       </div>
                       <div className="flex justify-between items-end">
                         <span className="text-lg font-medium text-white">
@@ -412,15 +415,15 @@ export default function Dashboard() {
 
           {/* Right Column: Details & Action */}
           <div className="col-span-1 lg:col-span-2 flex flex-col gap-4">
-            <h2 className="text-lg font-semibold text-zinc-300 uppercase tracking-wider">
+            <h2 className="text-lg font-semibold text-zinc-200 uppercase tracking-wider">
               Investigation View
             </h2>
-            <div className="flex-1 bg-zinc-900/80 rounded-xl border border-zinc-800 p-8 shadow-2xl relative overflow-hidden">
+            <div className="flex-1 bg-black/90 rounded-xl border border-zinc-800 p-8 shadow-2xl relative overflow-hidden">
               {/* Decorative background element */}
               <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
               {!selectedTx ? (
-                <div className="h-full flex flex-col items-center justify-center text-zinc-500">
+                <div className="h-full flex flex-col items-center justify-center text-zinc-400">
                   <svg className="w-16 h-16 mb-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
@@ -438,7 +441,7 @@ export default function Dashboard() {
                           </span>
                         )}
                       </h3>
-                      <p className="text-zinc-400 font-mono">{selectedTx.timestamp}</p>
+                      <p className="text-zinc-200 font-mono">{selectedTx.timestamp}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-4xl font-bold text-white">₹{selectedTx.amount.toLocaleString("en-IN")}</p>
@@ -446,14 +449,14 @@ export default function Dashboard() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-6 mb-8">
-                    <div className="bg-zinc-950/50 p-6 rounded-lg border border-zinc-800/50">
-                      <p className="text-sm text-zinc-400 mb-1">AI Risk Assessment</p>
+                    <div className="bg-black/50 p-6 rounded-lg border border-zinc-800/50">
+                      <p className="text-sm text-zinc-200 mb-1">AI Risk Assessment</p>
                       <div className="flex items-end gap-3 mb-3">
                         <span className={`text-4xl font-bold ${selectedTx.isMule ? 'text-pink-500' : 'text-lime-500'}`}>
                           {selectedTx.score}%
                         </span>
                       </div>
-                      <div className="w-full bg-zinc-900 rounded-full h-2">
+                      <div className="w-full bg-zinc-950 rounded-full h-2">
                         <div
                           className={`h-2 rounded-full ${selectedTx.isMule ? 'bg-pink-500' : 'bg-lime-500'}`}
                           style={{ width: `${selectedTx.score}%` }}
@@ -461,8 +464,8 @@ export default function Dashboard() {
                       </div>
                     </div>
 
-                    <div className="bg-zinc-950/50 p-6 rounded-lg border border-zinc-800/50">
-                      <p className="text-sm text-zinc-400 mb-3 flex items-center gap-2">
+                    <div className="bg-black/50 p-6 rounded-lg border border-zinc-800/50">
+                      <p className="text-sm text-zinc-200 mb-3 flex items-center gap-2">
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                         </svg>
@@ -470,28 +473,28 @@ export default function Dashboard() {
                       </p>
                       {selectedTx.isMule ? (
                         <>
-                          <p className="text-xs text-zinc-300 leading-relaxed mb-3">
+                          <p className="text-xs text-zinc-200 leading-relaxed mb-3">
                             The XGBoost model analyzed <span className="text-white font-semibold">3,924 behavioral features</span> and determined a <span className="text-pink-400 font-semibold">{selectedTx.score}% probability</span> of mule activity.
                           </p>
-                          <p className="text-xs text-zinc-500 uppercase tracking-wider mb-2">Key Contributing Factors</p>
+                          <p className="text-xs text-zinc-400 uppercase tracking-wider mb-2">Key Contributing Factors</p>
                           <ul className="space-y-2 text-sm">
                             {selectedTx.insights?.map((insight, idx) => (
                               <li key={idx} className="flex items-start gap-2">
                                 <span className="text-pink-400 font-bold mt-0.5">→</span>
-                                <span className="text-zinc-300">{insight}</span>
+                                <span className="text-zinc-200">{insight}</span>
                               </li>
                             ))}
                           </ul>
-                          <p className="text-xs text-zinc-500 mt-3 italic border-t border-zinc-800/50 pt-3">
+                          <p className="text-xs text-zinc-400 mt-3 italic border-t border-zinc-800/50 pt-3">
                             Analysis powered by XGBoost ensemble model trained on 9,082 historical banking transactions.
                           </p>
                           {selectedTx.xai_breakdown && (
-                            <div className="mt-4 bg-zinc-900/80 rounded p-3 border border-zinc-800">
-                              <p className="text-xs text-zinc-400 uppercase tracking-wider mb-2">Explainable AI (XAI) Breakdown</p>
+                            <div className="mt-4 bg-black/90 rounded p-3 border border-zinc-800">
+                              <p className="text-xs text-zinc-200 uppercase tracking-wider mb-2">Explainable AI (XAI) Breakdown</p>
                               <div className="grid grid-cols-2 gap-2">
                                 {Object.entries(selectedTx.xai_breakdown).map(([key, val]) => (
                                   <div key={key} className="flex justify-between text-xs">
-                                    <span className="text-zinc-300">{key}:</span>
+                                    <span className="text-zinc-200">{key}:</span>
                                     <span className="text-pink-400 font-mono font-bold">{val}</span>
                                   </div>
                                 ))}
@@ -503,7 +506,7 @@ export default function Dashboard() {
                         <ul className="space-y-2 text-sm">
                           <li className="flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-lime-500"></span>
-                            <span className="text-zinc-300">No anomalies detected</span>
+                            <span className="text-zinc-200">No anomalies detected</span>
                           </li>
                         </ul>
                       )}
@@ -537,7 +540,7 @@ export default function Dashboard() {
                           </svg>
                           Predicted Money Trail (Layering Phase)
                         </h4>
-                        <div className="bg-zinc-950/50 rounded-lg p-4 border border-zinc-800/50 relative overflow-hidden">
+                        <div className="bg-black/50 rounded-lg p-4 border border-zinc-800/50 relative overflow-hidden">
                           <div className="flex flex-col items-center">
                             {/* Origin */}
                             <div className="bg-pink-500/20 border border-pink-500/50 text-pink-300 px-4 py-2 rounded text-sm font-mono z-10">
@@ -552,17 +555,17 @@ export default function Dashboard() {
                             <div className="flex justify-between w-72 mt-2 z-10">
                               <div className="flex flex-col items-center gap-2">
                                 <div className="w-px h-4 bg-zinc-700"></div>
-                                <div className="bg-zinc-900 border border-zinc-700 text-zinc-300 px-2 py-1 rounded text-xs font-mono">Offshore-A</div>
+                                <div className="bg-zinc-950 border border-zinc-700 text-zinc-200 px-2 py-1 rounded text-xs font-mono">Offshore-A</div>
                                 <span className="text-pink-400 text-xs font-bold">₹{Math.floor(selectedTx.amount * 0.4).toLocaleString("en-IN")}</span>
                               </div>
                               <div className="flex flex-col items-center gap-2">
                                 <div className="w-px h-4 bg-zinc-700"></div>
-                                <div className="bg-zinc-900 border border-zinc-700 text-zinc-300 px-2 py-1 rounded text-xs font-mono">Crypto-X</div>
+                                <div className="bg-zinc-950 border border-zinc-700 text-zinc-200 px-2 py-1 rounded text-xs font-mono">Crypto-X</div>
                                 <span className="text-pink-400 text-xs font-bold">₹{Math.floor(selectedTx.amount * 0.35).toLocaleString("en-IN")}</span>
                               </div>
                               <div className="flex flex-col items-center gap-2">
                                 <div className="w-px h-4 bg-zinc-700"></div>
-                                <div className="bg-zinc-900 border border-zinc-700 text-zinc-300 px-2 py-1 rounded text-xs font-mono">Shell-Corp</div>
+                                <div className="bg-zinc-950 border border-zinc-700 text-zinc-200 px-2 py-1 rounded text-xs font-mono">Shell-Corp</div>
                                 <span className="text-pink-400 text-xs font-bold">₹{Math.floor(selectedTx.amount * 0.25).toLocaleString("en-IN")}</span>
                               </div>
                             </div>
@@ -602,7 +605,7 @@ export default function Dashboard() {
             </div>
 
             {/* Global Threat Map Panel */}
-            <h2 className="text-lg font-semibold text-zinc-300 uppercase tracking-wider mt-2 flex justify-between">
+            <h2 className="text-lg font-semibold text-zinc-200 uppercase tracking-wider mt-2 flex justify-between">
               Global Threat Map
               <span className="text-xs bg-cyan-500/20 px-2 py-1 rounded text-cyan-400 border border-cyan-500/30 animate-pulse">
                 Live Feed
@@ -611,23 +614,23 @@ export default function Dashboard() {
             <ThreatGlobe />
 
             {/* New Panel for Regulatory Feeds */}
-            <h2 className="text-lg font-semibold text-zinc-300 uppercase tracking-wider mt-2 flex justify-between">
+            <h2 className="text-lg font-semibold text-zinc-200 uppercase tracking-wider mt-2 flex justify-between">
               Live Regulatory Feed (CISA / RBI)
               <span className="text-xs bg-lime-500/20 px-2 py-1 rounded text-lime-400 border border-lime-500/30 animate-pulse">
                 Live Sync
               </span>
             </h2>
-            <div className="bg-zinc-900/50 rounded-xl border border-zinc-800/50 p-4 shadow-xl">
+            <div className="bg-black/80 rounded-xl border border-zinc-800/50 p-4 shadow-xl">
               {alerts.length === 0 ? (
-                <p className="text-zinc-500 text-sm">Fetching live alerts...</p>
+                <p className="text-zinc-400 text-sm">Fetching live alerts...</p>
               ) : (
                 <ul className="space-y-3">
                   {alerts.slice(0, 3).map((alert, idx) => (
                     <li key={idx} className="flex gap-3 items-start border-b border-zinc-800/50 pb-3 last:border-0 last:pb-0">
                       <span className="mt-1 w-2 h-2 rounded-full bg-cyan-500 shrink-0"></span>
                       <div>
-                        <p className="text-sm text-zinc-300 font-medium leading-tight">{alert.title}</p>
-                        <p className="text-xs text-zinc-500 mt-1">{alert.date}</p>
+                        <p className="text-sm text-zinc-200 font-medium leading-tight">{alert.title}</p>
+                        <p className="text-xs text-zinc-400 mt-1">{alert.date}</p>
                       </div>
                     </li>
                   ))}
@@ -639,11 +642,11 @@ export default function Dashboard() {
       )}
 
       {activeTab === "CaseManagement" && (
-        <div className="bg-zinc-900/50 rounded-xl border border-zinc-800 p-6 shadow-xl min-h-[60vh]">
+        <div className="bg-black/80 rounded-xl border border-zinc-800 p-6 shadow-xl min-h-[60vh]">
           <h2 className="text-2xl font-bold text-white mb-6">Investigator Case Management</h2>
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm text-zinc-300">
-              <thead className="bg-zinc-800/50 text-zinc-400">
+            <table className="w-full text-left text-sm text-zinc-200">
+              <thead className="bg-zinc-800/50 text-zinc-200">
                 <tr>
                   <th className="p-4">Case ID</th>
                   <th className="p-4">Timestamp</th>
@@ -668,7 +671,7 @@ export default function Dashboard() {
                   </tr>
                 ))}
                 {transactions.filter(t => t.score > 85).length === 0 && (
-                  <tr><td colSpan={5} className="p-8 text-center text-zinc-500">No high-risk cases currently active.</td></tr>
+                  <tr><td colSpan={5} className="p-8 text-center text-zinc-400">No high-risk cases currently active.</td></tr>
                 )}
               </tbody>
             </table>
@@ -678,7 +681,7 @@ export default function Dashboard() {
 
       {activeTab === "Analytics" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[60vh]">
-          <div className="bg-zinc-900/50 rounded-xl border border-zinc-800 p-6 shadow-xl">
+          <div className="bg-black/80 rounded-xl border border-zinc-800 p-6 shadow-xl">
             <h2 className="text-xl font-bold text-white mb-6">Transaction Volume (Live)</h2>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
@@ -691,7 +694,7 @@ export default function Dashboard() {
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="bg-zinc-900/50 rounded-xl border border-zinc-800 p-6 shadow-xl">
+          <div className="bg-black/80 rounded-xl border border-zinc-800 p-6 shadow-xl">
             <h2 className="text-xl font-bold text-white mb-6">Risk Distribution</h2>
             <div className="h-64 flex items-center justify-center">
               <ResponsiveContainer width="100%" height="100%">

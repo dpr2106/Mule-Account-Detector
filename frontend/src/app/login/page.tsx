@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ShieldAlert } from "lucide-react";
+import Image from "next/image";
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -35,17 +36,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center p-4 font-sans text-zinc-200 transition-colors duration-700 ${error ? 'bg-pink-950 animate-pulse' : success ? 'bg-lime-950/40' : 'bg-zinc-950'}`}>
-      <div className={`w-full max-w-md bg-zinc-900/80 border rounded-2xl p-8 backdrop-blur-sm relative overflow-hidden transition-all duration-500 ${error ? 'border-pink-500 shadow-[0_0_100px_rgba(225,29,72,0.4)]' : success ? 'border-lime-500 shadow-[0_0_100px_rgba(16,185,129,0.3)]' : 'border-zinc-800 shadow-2xl'}`}>
+    <div className={`min-h-screen flex items-center justify-center p-4 font-sans text-zinc-200 transition-colors duration-700 ${error ? 'bg-pink-950 animate-pulse' : success ? 'bg-lime-950/40' : 'bg-black'}`}>
+      <div className={`w-full max-w-md bg-black/90 border rounded-2xl p-8 backdrop-blur-sm relative overflow-hidden transition-all duration-500 ${error ? 'border-pink-500 shadow-[0_0_100px_rgba(225,29,72,0.4)]' : success ? 'border-lime-500 shadow-[0_0_100px_rgba(16,185,129,0.3)]' : 'border-zinc-800 shadow-2xl'}`}>
         {/* Decorative background element */}
         <div className="absolute -top-16 -right-16 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="text-center mb-8">
-          <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-zinc-950 border mb-4 shadow-inner transition-colors duration-500 ${error ? 'border-pink-500' : success ? 'border-lime-500' : 'border-zinc-800'}`}>
-            <span className={`w-4 h-4 rounded-full animate-pulse ${error ? 'bg-pink-500 shadow-[0_0_15px_rgba(225,29,72,1)]' : success ? 'bg-lime-500 shadow-[0_0_15px_rgba(16,185,129,1)]' : 'bg-amber-500'}`}></span>
+          <div className={`inline-flex items-center justify-center w-24 h-24 rounded-full bg-black border-2 shadow-inner transition-colors duration-500 relative overflow-hidden ${error ? 'border-pink-500 shadow-[0_0_20px_rgba(225,29,72,0.6)]' : success ? 'border-lime-500 shadow-[0_0_20px_rgba(16,185,129,0.6)]' : 'border-zinc-800'}`}>
+            <Image src="/logo.png" alt="Vespa AI Logo" fill className="object-cover p-2" />
+            <div className={`absolute bottom-2 right-2 w-3 h-3 rounded-full animate-pulse border border-zinc-900 ${error ? 'bg-pink-500 shadow-[0_0_15px_rgba(225,29,72,1)]' : success ? 'bg-lime-500 shadow-[0_0_15px_rgba(16,185,129,1)]' : 'bg-cyan-500'}`}></div>
           </div>
           <h1 className="text-2xl font-bold text-white tracking-tight">Vespa AI</h1>
-          <p className="text-zinc-400 text-sm mt-1">Financial Intelligence Unit</p>
+          <p className="text-zinc-200 text-sm mt-1">Financial Intelligence Unit</p>
         </div>
 
         {error && (
@@ -57,7 +59,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-medium text-zinc-200 uppercase tracking-wider mb-2">
               Corporate Email
             </label>
             <input
@@ -65,13 +67,13 @@ export default function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-colors"
+              className="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-colors"
               placeholder="analyst@vespabank.com"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-medium text-zinc-200 uppercase tracking-wider mb-2">
               Password
             </label>
             <input
@@ -79,20 +81,20 @@ export default function LoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-colors"
+              className="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-colors"
               placeholder="••••••••"
             />
           </div>
 
           {!isLogin && (
             <div>
-              <label className="block text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-medium text-zinc-200 uppercase tracking-wider mb-2">
                 Requested Role
               </label>
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-colors appearance-none"
+                className="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-colors appearance-none"
               >
                 <option value="analyst">L1 Analyst (Read-only)</option>
                 <option value="admin">L2 Investigator (Full Access)</option>
@@ -120,7 +122,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-zinc-800/50 text-center">
-          <p className="text-xs text-zinc-500 flex items-center justify-center gap-2">
+          <p className="text-xs text-zinc-400 flex items-center justify-center gap-2">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2-2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
