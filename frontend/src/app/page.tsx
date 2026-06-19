@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import ThreatGlobe from "./ThreatGlobe";
 import CopilotChat from "./CopilotChat";
 import { jsPDF } from "jspdf";
@@ -272,7 +273,7 @@ export default function Dashboard() {
         <div className="flex gap-4 items-center">
           <button
             onClick={toggleSound}
-            className={`px-4 py-2 rounded-lg border shadow-inner flex items-center gap-2 transition-colors ${soundEnabled
+            className={`px-4 py-2 rounded-lg border shadow-inner flex items-center gap-2 transition-all duration-200 hover:scale-105 active:scale-95 ${soundEnabled
               ? "bg-cyan-500/20 border-cyan-500/50 text-cyan-300"
               : "bg-zinc-950 border-zinc-800 text-zinc-200"
               }`}
@@ -295,21 +296,32 @@ export default function Dashboard() {
               <span className="w-2 h-2 rounded-full bg-lime-500"></span> Online
             </p>
           </div>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => {
               localStorage.removeItem("vespa_auth");
               router.push("/login");
             }}
-            className="px-4 py-2 bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 border border-pink-500/30 rounded-lg transition-colors text-sm font-medium"
+            className="px-4 py-2 bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 border border-pink-500/30 rounded-lg transition-all duration-200 text-sm font-medium"
           >
             Logout
-          </button>
+          </motion.button>
         </div>
       </header>
 
       {/* Analytics Dashboard Banner */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-black/90 rounded-xl p-4 border-t-2 border-t-cyan-500 border-x border-b border-zinc-800 shadow-[inset_0_0_20px_rgba(6,182,212,0.1)] flex items-center justify-between">
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, staggerChildren: 0.1 }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+      >
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-black/90 rounded-xl p-4 border-t-2 border-t-cyan-500 border-x border-b border-zinc-800 shadow-[inset_0_0_20px_rgba(6,182,212,0.1)] flex items-center justify-between"
+        >
           <div>
             <p className="text-cyan-300 text-sm font-medium uppercase tracking-wider mb-1">Total Volume Scanned</p>
             <p className="text-2xl font-bold text-white tracking-tight">₹{stats.total_scanned.toLocaleString("en-IN")}</p>
@@ -317,8 +329,13 @@ export default function Dashboard() {
           <div className="w-12 h-12 rounded-full bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.3)]">
             <span className="text-cyan-400 font-bold text-xl">₹</span>
           </div>
-        </div>
-        <div className="bg-black/90 rounded-xl p-4 border-t-2 border-t-lime-500 border-x border-b border-zinc-800 shadow-[inset_0_0_20px_rgba(132,204,22,0.1)] flex items-center justify-between">
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="bg-black/90 rounded-xl p-4 border-t-2 border-t-lime-500 border-x border-b border-zinc-800 shadow-[inset_0_0_20px_rgba(132,204,22,0.1)] flex items-center justify-between"
+        >
           <div>
             <p className="text-lime-300 text-sm font-medium uppercase tracking-wider mb-1">Total Fraud Prevented</p>
             <p className="text-2xl font-bold text-white tracking-tight">₹{stats.fraud_prevented.toLocaleString("en-IN")}</p>
@@ -326,8 +343,13 @@ export default function Dashboard() {
           <div className="w-12 h-12 rounded-full bg-lime-500/20 border border-lime-500/50 flex items-center justify-center shadow-[0_0_15px_rgba(132,204,22,0.3)]">
             <span className="text-lime-400 font-bold text-xl">✓</span>
           </div>
-        </div>
-        <div className="bg-black/90 rounded-xl p-4 border-t-2 border-t-pink-500 border-x border-b border-zinc-800 shadow-[inset_0_0_20px_rgba(236,72,153,0.1)] flex items-center justify-between">
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="bg-black/90 rounded-xl p-4 border-t-2 border-t-pink-500 border-x border-b border-zinc-800 shadow-[inset_0_0_20px_rgba(236,72,153,0.1)] flex items-center justify-between"
+        >
           <div>
             <p className="text-pink-300 text-sm font-medium uppercase tracking-wider mb-1">Active Mule Threats</p>
             <p className="text-2xl font-bold text-white tracking-tight">{stats.active_threats.toLocaleString("en-IN")}</p>
@@ -335,8 +357,8 @@ export default function Dashboard() {
           <div className="w-12 h-12 rounded-full bg-pink-500/20 border border-pink-500/50 flex items-center justify-center animate-pulse shadow-[0_0_20px_rgba(244,63,94,0.6)]">
             <span className="text-pink-400 font-bold text-xl">!</span>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {criticalAlert && (
         <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-pink-600 text-white px-6 py-3 rounded-lg shadow-2xl flex items-center gap-3 animate-pulse border-2 border-pink-400">
@@ -351,17 +373,17 @@ export default function Dashboard() {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 rounded-t-lg font-medium transition-colors ${activeTab === tab ? "bg-cyan-600 text-white" : "text-zinc-200 hover:text-zinc-200"}`}
+            className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 hover:-translate-y-1 ${activeTab === tab ? "bg-cyan-600 text-white" : "text-zinc-200 hover:text-zinc-200"}`}
           >
             {tab.replace(/([A-Z])/g, ' $1').trim()}
           </button>
         ))}
         <div className="ml-auto flex gap-3">
-          <label className="px-4 py-2 text-sm bg-cyan-600/20 hover:bg-cyan-600/40 text-cyan-300 border border-cyan-500/30 rounded flex items-center gap-2 cursor-pointer transition-colors">
+          <label className="px-4 py-2 text-sm bg-cyan-600/20 hover:bg-cyan-600/40 text-cyan-300 border border-cyan-500/30 rounded flex items-center gap-2 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95">
             <Upload className="w-4 h-4" /> Upload Custom CSV
             <input type="file" accept=".csv" className="hidden" onChange={uploadDataset} />
           </label>
-          <button onClick={exportToCSV} className="px-4 py-2 text-sm bg-zinc-950 hover:bg-zinc-800 text-white rounded flex items-center gap-2 border border-zinc-700 transition-colors">
+          <button onClick={exportToCSV} className="px-4 py-2 text-sm bg-zinc-950 hover:bg-zinc-800 text-white rounded flex items-center gap-2 border border-zinc-700 transition-all duration-200 hover:scale-105 active:scale-95">
             <Download className="w-4 h-4" /> Export CSV
           </button>
         </div>
@@ -381,34 +403,41 @@ export default function Dashboard() {
               {transactions.length === 0 ? (
                 <p className="text-zinc-400 text-center mt-10">Fetching transactions...</p>
               ) : (
-                <div className="flex flex-col gap-3">
-                  {transactions.map((tx) => (
-                    <div
-                      key={tx.id}
-                      onClick={() => setSelectedTx(tx)}
-                      className={`p-4 rounded-lg cursor-pointer transition-all duration-200 border ${tx.isMule
-                        ? "bg-pink-500/10 border-pink-500/50 hover:bg-pink-500/20"
-                        : "bg-zinc-950 border-zinc-800 hover:bg-zinc-800"
-                        } ${selectedTx?.id === tx.id ? "ring-2 ring-cyan-500" : ""}`}
-                    >
-                      <div className="flex justify-between items-start mb-2">
-                        <span className="font-mono text-sm text-zinc-200">{tx.id}</span>
-                        <span className="text-xs text-zinc-400">{tx.timestamp}</span>
-                      </div>
-                      <div className="flex justify-between items-end">
-                        <span className="text-lg font-medium text-white">
-                          ₹{tx.amount.toLocaleString("en-IN")}
-                        </span>
-                        <span
-                          className={`text-sm font-bold px-2 py-1 rounded ${tx.isMule ? "bg-pink-500/20 text-pink-400" : "bg-lime-500/20 text-lime-400"
-                            }`}
-                        >
-                          Risk: {tx.score}%
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <motion.div layout className="flex flex-col gap-3">
+                  <AnimatePresence>
+                    {transactions.map((tx) => (
+                      <motion.div
+                        layout
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                        key={tx.id}
+                        onClick={() => setSelectedTx(tx)}
+                        className={`p-4 rounded-lg cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg border ${tx.isMule
+                          ? "bg-pink-500/10 border-pink-500/50 hover:bg-pink-500/20"
+                          : "bg-zinc-950 border-zinc-800 hover:bg-zinc-800"
+                          } ${selectedTx?.id === tx.id ? "ring-2 ring-cyan-500" : ""}`}
+                      >
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="font-mono text-sm text-zinc-200">{tx.id}</span>
+                          <span className="text-xs text-zinc-400">{tx.timestamp}</span>
+                        </div>
+                        <div className="flex justify-between items-end">
+                          <span className="text-lg font-medium text-white">
+                            ₹{tx.amount.toLocaleString("en-IN")}
+                          </span>
+                          <span
+                            className={`text-sm font-bold px-2 py-1 rounded ${tx.isMule ? "bg-pink-500/20 text-pink-400" : "bg-lime-500/20 text-lime-400"
+                              }`}
+                          >
+                            Risk: {tx.score}%
+                          </span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
               )}
             </div>
           </div>
@@ -430,7 +459,12 @@ export default function Dashboard() {
                   <p>Select a transaction from the live feed to investigate.</p>
                 </div>
               ) : (
-                <div className="animate-in fade-in duration-300 h-full flex flex-col">
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="h-full flex flex-col"
+                >
                   <div className="flex justify-between items-start mb-8">
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-3">
@@ -573,34 +607,46 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <div className="flex gap-4 mt-6">
-                        <button className="px-6 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded font-medium transition-colors cursor-pointer">
+                        <motion.button 
+                          whileHover={{ scale: 1.05 }} 
+                          whileTap={{ scale: 0.95 }} 
+                          className="px-6 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded font-medium transition-all duration-200 cursor-pointer"
+                        >
                           Freeze Account
-                        </button>
-                        <button className="px-6 py-2 bg-black hover:bg-cyan-600/40 border border-cyan-500/50 text-white rounded font-medium transition-colors cursor-pointer">
+                        </motion.button>
+                        <motion.button 
+                          whileHover={{ scale: 1.05 }} 
+                          whileTap={{ scale: 0.95 }} 
+                          className="px-6 py-2 bg-black hover:bg-cyan-600/40 border border-cyan-500/50 text-white rounded font-medium transition-all duration-200 cursor-pointer"
+                        >
                           Request KYC Review
-                        </button>
-                        <button
+                        </motion.button>
+                        <motion.button
+                          whileHover={{ scale: 1.05 }} 
+                          whileTap={{ scale: 0.95 }} 
                           onClick={() => window.dispatchEvent(new CustomEvent('openCopilot', { detail: selectedTx?.id }))}
-                          className="px-6 py-2 bg-black hover:bg-cyan-600/40 border border-cyan-500/50 text-white rounded font-medium transition-colors flex items-center gap-2 cursor-pointer"
+                          className="px-6 py-2 bg-black hover:bg-cyan-600/40 border border-cyan-500/50 text-white rounded font-medium transition-all duration-200 flex items-center gap-2 cursor-pointer"
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                           </svg>
                           Click Here For AI Analysis
-                        </button>
-                        <button
+                        </motion.button>
+                        <motion.button
+                          whileHover={{ scale: 1.05 }} 
+                          whileTap={{ scale: 0.95 }} 
                           onClick={generateSAR}
-                          className="px-6 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded font-medium transition-colors flex items-center gap-2 cursor-pointer"
+                          className="px-6 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded font-medium transition-all duration-200 flex items-center gap-2 cursor-pointer"
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
                           Download SAR (PDF)
-                        </button>
+                        </motion.button>
                       </div>
                     </>
                   )}
-                </div>
+                </motion.div>
               )}
             </div>
 

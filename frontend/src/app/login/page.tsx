@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ShieldAlert } from "lucide-react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -37,7 +38,12 @@ export default function LoginPage() {
 
   return (
     <div className={`min-h-screen flex items-center justify-center p-4 font-sans text-zinc-200 transition-colors duration-700 ${error ? 'bg-pink-950 animate-pulse' : success ? 'bg-lime-950/40' : 'bg-black'}`}>
-      <div className={`w-full max-w-md bg-black/90 border rounded-2xl p-8 backdrop-blur-sm relative overflow-hidden transition-all duration-500 ${error ? 'border-pink-500 shadow-[0_0_100px_rgba(225,29,72,0.4)]' : success ? 'border-lime-500 shadow-[0_0_100px_rgba(16,185,129,0.3)]' : 'border-zinc-800 shadow-2xl'}`}>
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={`w-full max-w-md bg-black/90 border rounded-2xl p-8 backdrop-blur-sm relative overflow-hidden transition-all duration-500 ${error ? 'border-pink-500 shadow-[0_0_100px_rgba(225,29,72,0.4)]' : success ? 'border-lime-500 shadow-[0_0_100px_rgba(16,185,129,0.3)]' : 'border-zinc-800 shadow-2xl'}`}
+      >
         {/* Decorative background element */}
         <div className="absolute -top-16 -right-16 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -102,18 +108,20 @@ export default function LoginPage() {
             </div>
           )}
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-3 rounded-lg shadow-lg shadow-cyan-500/20 transition-all active:scale-[0.98]"
+            className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-3 rounded-lg shadow-lg shadow-cyan-500/20 transition-all duration-200"
           >
-            {isLogin ? "Secure Login" : "Request Access"}
-          </button>
+            {isLogin ? "Authenticate" : "Request Access"}
+          </motion.button>
         </form>
 
         <div className="mt-6 text-center">
           <button
             onClick={() => setIsLogin(!isLogin)}
-            className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+            className="text-sm text-cyan-400 hover:text-cyan-300 transition-all duration-200 hover:scale-105"
           >
             {isLogin
               ? "Need an account? Request access"
@@ -129,7 +137,7 @@ export default function LoginPage() {
             End-to-End Encrypted Portal
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
